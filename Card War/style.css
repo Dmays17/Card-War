@@ -1,0 +1,18 @@
+.playerDeck{
+margin-top: 60px;
+
+}
+
+.computerDeck{
+    margin-bottom: 60px;
+}
+
+.intro{
+    line-height: .5em;
+}
+
+.result{
+    margin-left: 1.7em;
+    font-weight: 700;
+    font-size: larger;
+}
