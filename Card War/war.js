@@ -1,25 +1,14 @@
 //Line 40 of the HTML is how I got this to work- got ** type="module" ** code from techtually.com
 import Deck from "./deck.js"
-let CARD_VALUE_MAP = {
-    "2": 2,
-    "3": 3,
-    "4": 4,
-    "5": 5,
-    "6": 6,
-    "7": 7,
-    "8": 8,
-    "9": 9,
-    "10": 10,
-    J: 11,
-    Q: 12,
-    K: 13,
-    A: 14
-  }
+
   
 let inRound=false
 let wait=true
 let deck= new Deck()
     deck.shuffleDeck()
+    let midpoint =Math.ceil( deck.numberOfCards / 2)
+        let playerDeck = new Deck(deck.cards.slice(0,midpoint))
+        let computerDeck = new Deck(deck.cards.slice(midpoint, deck.numberOfCards))
     console.log(deck.cards)
 
     document.addEventListener("click", () => {
@@ -37,9 +26,7 @@ let deck= new Deck()
     //startGame()   
     function startGame(){
         
-        let midpoint =Math.ceil( deck.numberOfCards / 2)
-        let playerDeck = new Deck(deck.cards.slice(0,midpoint))
-        let computerDeck = new Deck(deck.cards.slice(midpoint, deck.numberOfCards))
+        
         //console.log(playerDeck.cards[0].value)
 
         function currentCardCount(){
@@ -54,20 +41,23 @@ let deck= new Deck()
 
 
 
+
     function checkResult(){
-             
-        let mplayerCard = playerDeck.grabFirst()
-        let mcomputerCard = computerDeck.grabFirst()
-        console.log(mplayerCard)
-        console.log(mcomputerCard)
+       let mplayerCard = playerDeck.grabFirst()
+       let mcomputerCard = computerDeck.grabFirst()
+       console.log(mcomputerCard)
+       console.log(mplayerCard)
     for(let i=0;i<1;i++){
-    if(mplayerCard.value>mcomputerCard.value){
+
+    if(mplayerCard.value > mcomputerCard.value){
+
         playerDeck.push(mplayerCard)
         playerDeck.push(mcomputerCard)
+
         let check = document.querySelector('.result')
         check.innerHTML='Winner'
     }
-    if(mplayerCard.value<mcomputerCard.value){
+    if(mplayerCard.value < mcomputerCard.value){
         computerDeck.push(mplayerCard)
         computerDeck.push(mcomputerCard)
         let check = document.querySelector('.result')
@@ -79,15 +69,32 @@ let deck= new Deck()
         let check = document.querySelector('.result')
         check.innerHTML='Warr'
     }
+  
     }   
+    
     wait=true
     inRound=false
+    //return playerDeck,computerDeck
     } 
     checkResult()
     currentCardCount()
-    console.log(playerDeck)
-    console.log(computerDeck)
-} 
+    //return playerDeck,computerDeck
+    //console.log(playerDeck)
+    //console.log(computerDeck)
+}
+function Rbreak(){
+            
+    if(wait){
+        
+        let check = document.querySelector('.result')
+        check.innerHTML='Click to start round'
+    }
+    inRound=true
+    wait = false
+    return
+}
+    
+//https://paste.ofcode.org/3bzrn3EwG5nE42evddCsRvL --check out flip help--
 
 
     /*flip()
@@ -149,50 +156,3 @@ let deck= new Deck()
                 }
             }
         }*/
-
-
-
-        
-
-      
-    
-        function Rbreak(){
-            
-            if(wait){
-                
-                let check = document.querySelector('.result')
-                check.innerHTML='Click to start round'
-            }
-            inRound=true
-            wait = false
-            return
-        }
-        
-
-        
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    
-    
-    /*let flip= dealCards()
-    for(i=0;i<flip.length;i++){
-        if(flip[i]===H2){
-            let computerfaceup = document.querySelector("#computerCard")
-            computerfaceup.src="/Assests/2-Clubs.jpg"*/
